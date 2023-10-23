@@ -1,5 +1,16 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+HELP.md
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# STS
+.apt_generated
+.factorypath
+.springBeans
+.sts4-cache
+
 # IDEs and editors
 .idea/
 .project
@@ -8,6 +19,17 @@
 *.launch
 .settings/
 *.sublime-workspace
+*.iws
+*.iml
+*.ipr
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
 
 # Visual Studio Code
 .vscode/*
@@ -23,3 +45,9 @@ Thumbs.db
 
 # Env files
 .env
+
+# Compiled target
+target/
+
+# Framework specific files
+.jpb/
