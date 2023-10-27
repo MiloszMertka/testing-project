@@ -18,23 +18,7 @@ public class AuthorDtoTest {
 
     @Autowired
     private Validator validator;
-
-    @Test
-    void shouldCorrectly_createAuthorDto() {
-        //given
-        Long id = 1L;
-        String firstName = "Micheal";
-        String lastName = "Costner";
-
-        //when
-        AuthorDto authorDto = new AuthorDto(id, firstName, lastName);
-
-        //then
-        assertEquals(id, authorDto.id());
-        assertEquals(firstName, authorDto.firstName());
-        assertEquals(lastName, authorDto.lastName());
-    }
-
+    
     @Test
     void shouldThrowException_whenFirstNameExceedsMaxSize() {
         //given

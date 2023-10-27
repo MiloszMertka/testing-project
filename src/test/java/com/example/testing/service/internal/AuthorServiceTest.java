@@ -93,7 +93,7 @@ public class AuthorServiceTest {
     void shouldCorrectly_createAuthor() {
         //given
         Long id = 1L;
-        AuthorDto authorDto = new AuthorDto(1L, "Adam", "Smith");
+        AuthorDto authorDto = new AuthorDto(id, "Adam", "Smith");
 
         //when
         authorService.createAuthor(authorDto);
@@ -113,7 +113,7 @@ public class AuthorServiceTest {
     void shouldCorrectly_updateAuthor() {
         //given
         Long id = 1L;
-        AuthorDto authorDto = new AuthorDto(1L, "Paul", "Kevin");
+        AuthorDto authorDto = new AuthorDto(id, "Paul", "Kevin");
         Author author = new Author("Adam", "Smith");
         when(authorRepository.findById(id)).thenReturn(Optional.of(author));
 
