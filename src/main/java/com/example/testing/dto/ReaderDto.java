@@ -5,8 +5,13 @@ import jakarta.validation.constraints.Size;
 
 public record ReaderDto(
         Long id,
-        @NotBlank @Size(max = 255) String firstName,
-        @NotBlank @Size(max = 255) String lastName,
-        @NotBlank @Size(min = 5, max = 15) String cardNumber) {
+        @NotBlank(message = "must not be blank")
+        @Size(max = 255, message = "size must be between 0 and 255")
+        String firstName,
+        @NotBlank(message = "must not be blank")
+        @Size(max = 255, message = "size must be between 0 and 255")
+        String lastName,
+        @Size(min = 5, max = 15, message = "size must be between 5 and 15")
+        String cardNumber) {
 
 }
