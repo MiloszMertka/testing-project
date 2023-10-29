@@ -14,11 +14,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 @SpringBootTest
 @ActiveProfiles("test")
-public class AuthorDtoTest {
+public class AuthorDtoValidationTest {
 
     @Autowired
     private Validator validator;
-    
+
     @Test
     void shouldThrowException_whenFirstNameExceedsMaxSize() {
         //given

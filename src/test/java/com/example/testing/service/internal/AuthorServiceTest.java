@@ -30,49 +30,54 @@ public class AuthorServiceTest {
     private AuthorService authorService;
 
     @Test
-    void shouldCorrectly_getAuthors() {
+    void shouldCorrectly_getAuthors_whenAuthorsExist() {
         //given
-        List<Author> authorsList = Arrays.asList(new Author("Adam", "Smith"), new Author("Paul", "Henks"));
+        List<Author> authorsList = Arrays.asList(
+                new Author("Adam", "Smith"),
+                new Author("Paul", "Hanks")
+        );
         when(authorRepository.findAll()).thenReturn(authorsList);
         when(authorMapper.mapAuthorToAuthorDto(any(Author.class)))
                 .thenAnswer(invocation -> {
                     Author author = invocation.getArgument(0);
-                    return new AuthorDto(author.getId(), author.getFirstName(), author.getLastName());
+                    return new AuthorDto(
+                            author.getId(),
+                            author.getFirstName(),
+                            author.getLastName());
                 });
 
         //when
         Collection<AuthorDto> authorDtoCollection = authorService.getAuthors();
 
         //then
-        assertEquals(2, authorDtoCollection.size()); // Assuming there are 2 authors in the list
+        assertEquals(2, authorDtoCollection.size());
         List<AuthorDto> authorDtoList = new ArrayList<>(authorDtoCollection);
 
         assertEquals("Adam", authorDtoList.get(0).firstName());
         assertEquals("Smith", authorDtoList.get(0).lastName());
 
         assertEquals("Paul", authorDtoList.get(1).firstName());
-        assertEquals("Henks", authorDtoList.get(1).lastName());
+        assertEquals("Hanks", authorDtoList.get(1).lastName());
 
         verify(authorRepository).findAll();
         verify(authorMapper, times(2)).mapAuthorToAuthorDto(any(Author.class));
-
     }
 
     @Test
-    void getAuthor_shouldReturnAuthor_whenAuthorDoesExist() {
+    void getAuthor_shouldReturnAuthor_whenAuthorDoesExists() {
         //given
         Long id = 1L;
         String firstName = "Adam";
         String lastName = "Smith";
         Author author = new Author(firstName, lastName);
-        when(authorRepository.findById(1L)).thenReturn(Optional.of(author));
+        when(authorRepository.findById(id)).thenReturn(Optional.of(author));
         when(authorMapper.mapAuthorToAuthorDto(author)).thenReturn(new AuthorDto(id, firstName, lastName));
 
         //when
         AuthorDto authorDto = authorService.getAuthor(id);
 
         //then
-        assertEquals(1L, authorDto.id());
+        assertEquals(id, authorDto.id());
         assertEquals(firstName, authorDto.firstName());
         assertEquals(lastName, authorDto.lastName());
         verify(authorRepository).findById(id);
@@ -90,7 +95,7 @@ public class AuthorServiceTest {
     }
 
     @Test
-    void shouldCorrectly_createAuthor() {
+    void shouldCorrectly_createAuthor_whenDataIsNotNull() {
         //given
         Long id = 1L;
         AuthorDto authorDto = new AuthorDto(id, "Adam", "Smith");
@@ -110,7 +115,7 @@ public class AuthorServiceTest {
     }
 
     @Test
-    void shouldCorrectly_updateAuthor() {
+    void shouldCorrectly_updateAuthor_whenDataIsNotNull() {
         //given
         Long id = 1L;
         AuthorDto authorDto = new AuthorDto(id, "Paul", "Kevin");
@@ -142,7 +147,7 @@ public class AuthorServiceTest {
     }
 
     @Test
-    void shouldCorrectly_deleteAuthor() {
+    void shouldCorrectly_deleteAuthor_whenAuthorExists() {
         //given
         Long id = 1L;
         Author author = new Author("Adam", "Smith");
