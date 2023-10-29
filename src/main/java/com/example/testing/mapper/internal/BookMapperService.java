@@ -32,6 +32,7 @@ class BookMapperService implements BookMapper {
         final var authors = bookDto.authors().stream().map(authorMapper::mapAuthorDtoToAuthor).toList();
         book.setTitle(bookDto.title());
         book.setIsbn(bookDto.isbn());
+        book.getAuthors().clear();
         book.getAuthors().addAll(authors);
     }
 
