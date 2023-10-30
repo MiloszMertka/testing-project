@@ -9,7 +9,11 @@ public record BorrowDto(
         Long id,
         LocalDateTime borrowDate,
         LocalDateTime returnDate,
-        @NotNull @Valid BookDto book,
-        @NotNull @Valid ReaderDto reader) {
+        @NotNull(message = "must not be null")
+        @Valid
+        BookDto book,
+        @NotNull(message = "must not be null")
+        @Valid
+        ReaderDto reader) {
 
 }
