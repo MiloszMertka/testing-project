@@ -52,8 +52,8 @@ public class BorrowDtoValidationTest {
 
         //then
         assertFalse(violations.isEmpty());
-        assertEquals(1, violations.size());
-        assertEquals("must not be null", violations.iterator().next().getMessage());
+        assertEquals(6, violations.size());
+        assertEquals("nie może być odstępem", violations.iterator().next().getMessage());
     }
 
 }

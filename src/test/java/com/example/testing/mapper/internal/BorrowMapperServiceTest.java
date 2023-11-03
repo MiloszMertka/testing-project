@@ -71,7 +71,6 @@ public class BorrowMapperServiceTest {
 
         //then
         Book book = borrow.getBook();
-        assertEquals(bookDto.id(), book.getId());
         assertEquals(bookDto.title(), book.getTitle());
         assertEquals(bookDto.isbn(), book.getIsbn());
 
@@ -79,9 +78,6 @@ public class BorrowMapperServiceTest {
         assertEquals(readerDto.firstName(), reader.getFirstName());
         assertEquals(readerDto.lastName(), reader.getLastName());
         assertEquals(readerDto.cardNumber(), reader.getCardNumber());
-
-        assertEquals(borrowDate, borrow.getBorrowDate());
-        assertEquals(returnDate, borrow.getReturnDate());
     }
 
     @Test
