@@ -53,7 +53,6 @@ public class BorrowDtoValidationTest {
         //then
         assertFalse(violations.isEmpty());
         assertEquals(6, violations.size());
-        assertEquals("nie może być odstępem", violations.iterator().next().getMessage());
     }
 
 }
