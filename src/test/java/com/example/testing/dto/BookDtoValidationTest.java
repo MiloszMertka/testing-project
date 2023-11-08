@@ -14,12 +14,11 @@ import static org.junit.Assert.assertFalse;
 
 @SpringBootTest
 @ActiveProfiles("test")
-class BookDtoTest {
-
-    @Autowired
-    private Validator validator;
+class BookDtoValidationTest {
 
     private final AuthorDto authorDto = new AuthorDto(5L, "Kazimierz", "Wielki");
+    @Autowired
+    private Validator validator;
 
     @Test
     void shouldThrowException_WhenTitleExceedsLimitedCapacity() {
@@ -140,4 +139,5 @@ class BookDtoTest {
         assertEquals(1, violations.size());
         assertEquals("must not be null", violations.iterator().next().getMessage());
     }
+
 }
